@@ -29,7 +29,7 @@ jobs:
               print('outside cycle, day', day); raise SystemExit(0)
           heb = ['יג','יד','טו','טז','יז','יח','יט','כ','כא','כב','כג','כד','כה']
           s = open('index.html', encoding='utf-8').read()
-          s, n1 = re.subn(r'<title>תהילים י״ג · יום \d+</title>', f'<title>תהילים י״ג · יום {day}</title>', s)
+          s, n1 = re.subn(r'<title>תהילים י״ג · [^<]* כסלו · יום \d+</title>', f'<title>תהילים י״ג · {heb[day-1]} כסלו · יום {day}</title>', s)
           s, n2 = re.subn(r'<h2 id="date">[^<]* כסלו</h2>', f'<h2 id="date">{heb[day-1]} כסלו</h2>', s)
           s, n3 = re.subn(r'<div class="day-number" id="dayLabel">יום \d+</div>', f'<div class="day-number" id="dayLabel">יום {day}</div>', s)
           print('replacements:', n1, n2, n3, 'day', day)
